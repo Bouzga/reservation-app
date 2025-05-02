@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -13,7 +14,9 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, 
+    private authService: AuthService
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -22,15 +25,16 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.http.post('http://localhost:8080/api/auth/login', this.loginForm.value)
-        .subscribe({
-          next: (response) => {
-            console.log('Login success', response);
-          },
-          error: (err) => {
-            console.error('Erreur de login', err);
-          }
-        });
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (response) => {
+          this.authService.saveToken(response.token);
+          console.log('Login successful');
+          // Redirection, etc.
+        },
+        error: (err) => {
+          console.error('Login failed', err);
+        }
+      });
     }
   }
 }
