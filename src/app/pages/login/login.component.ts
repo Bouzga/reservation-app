@@ -29,7 +29,6 @@ export class LoginComponent {
         next: (response) => {
           this.authService.saveToken(response.token);
           console.log('Login successful');
-          // Redirection, etc.
         },
         error: (err) => {
           console.error('Login failed', err);
