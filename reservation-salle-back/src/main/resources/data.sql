@@ -1,6 +1,13 @@
--- Users
+-- ADMIN
+
 INSERT INTO "user" (name, email, password, role)
-VALUES ('Amine', 'amine@example.com', '$2a$10$7SnzNivZxKtBq1qUpebgOOG8UoHxaBkBXLu6k2B3FdggNBbgYgEZC', 'CLIENT');
+VALUES
+    ('Admin One', 'admin1@example.com', '$2a$10$YIs3K6Qp6LfyKZkuVVrXE.jGzzexZpy7pmfDwKeZubTfrbUp7feRu', 'ADMIN'),
+
+-- CLIENTS
+    ('Client One', 'client1@example.com', '$2a$10$0w90g71VwYtPX23wBIpqJe5jXziGyB3qf8EGI9ejXK3Hef8NUIEBu', 'CLIENT'),
+    ('Client Two', 'client2@example.com', '$2a$10$0w90g71VwYtPX23wBIpqJe5jXziGyB3qf8EGI9ejXK3Hef8NUIEBu', 'CLIENT'),
+    ('Client Three', 'client3@example.com', '$2a$10$0w90g71VwYtPX23wBIpqJe5jXziGyB3qf8EGI9ejXK3Hef8NUIEBu', 'CLIENT');
 
 -- Salles
 INSERT INTO salle (nom, capacite, emplacement) VALUES ('Salle Alpha', 30, 'Étage 1');
